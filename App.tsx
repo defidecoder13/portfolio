@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
-import CommandPalette from './components/CommandPalette';
-import Background from './components/Background';
-import { ThemeMode } from './types';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import About from './components/About.tsx';
+import Skills from './components/Skills.tsx';
+import Projects from './components/Projects.tsx';
+import Contact from './components/Contact.tsx';
+import Footer from './components/Footer.tsx';
+import CustomCursor from './components/CustomCursor.tsx';
+import CommandPalette from './components/CommandPalette.tsx';
+import Background from './components/Background.tsx';
+import { ThemeMode } from './types.ts';
 
 const App: React.FC = () => {
   const [isInverted, setIsInverted] = useState(false);
@@ -22,18 +22,15 @@ const App: React.FC = () => {
 
   // Handle key listeners for hidden features
   useEffect(() => {
-    // Use any to avoid NodeJS namespace dependency in browser environment
     let spaceTimer: any;
     
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Spacebar Inversion
       if (e.code === 'Space') {
         spaceTimer = setTimeout(() => {
           setIsInverted(true);
         }, 1500);
       }
 
-      // Help Command Detection
       const nextTyped = (typedChars + e.key.toLowerCase()).slice(-4);
       setTypedChars(nextTyped);
       if (nextTyped === 'help') {
@@ -71,7 +68,6 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Double click background toggle
   const handleDoubleClick = useCallback(() => {
     setTheme(prev => prev === ThemeMode.PURE_BLACK ? ThemeMode.DARK_GRAY : ThemeMode.PURE_BLACK);
   }, []);
@@ -86,13 +82,10 @@ const App: React.FC = () => {
         Skip to content
       </a>
 
-      {/* The Minimal Dark Portal Background */}
       <Background />
-
       <CustomCursor />
       <Navbar />
       
-      {/* Scroll Progress Indicator */}
       <div className="fixed right-0 top-0 h-full w-[2px] z-50 overflow-hidden pointer-events-none">
         <div 
           className="bg-[#00eeff] w-full transition-all duration-300" 

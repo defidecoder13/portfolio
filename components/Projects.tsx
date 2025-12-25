@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { PROJECTS } from '../constants';
-import { Project } from '../types';
-import ProjectModal from './ProjectModal';
+import { PROJECTS } from '../constants.tsx';
+import { Project } from '../types.ts';
+import ProjectModal from './ProjectModal.tsx';
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
