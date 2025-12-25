@@ -52,37 +52,16 @@ const Hero: React.FC = () => {
   }, []);
 
   const pfpUrl = profileToggle 
-    ? 'https://picsum.photos/seed/subham2/400/400' 
-    : 'https://picsum.photos/seed/subham1/400/400';
+    ? 'public/github dp 2.jpg'
+    : 'public/github dp 2.jpg';
 
   return (
     <section id="hero" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-      <div className="z-10 animate-fade-in-up">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-4">
-          SUBHAM SANTRA
-        </h1>
-        
-        <div className="h-8 overflow-hidden mono text-[#00eeff] text-xl tracking-widest uppercase">
-          <div 
-            className="transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateY(-${roleIndex * 32}px)` }}
-          >
-            {ROLES.map((role) => (
-              <div key={role} className="h-8 flex items-center justify-center">
-                {role}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Dynamic Profile Picture */}
+      {/* Centered Profile Picture */}
       <div 
-        className="profile-pic-container absolute transition-all duration-700 ease-out z-20 pointer-events-auto cursor-pointer"
+        className="profile-pic-container mb-8 transition-all duration-700 ease-out z-20 pointer-events-auto cursor-pointer"
         style={{
-          top: scrollScale < 0.5 ? '40px' : '50%',
-          left: scrollScale < 0.5 ? '40px' : '50%',
-          transform: `translate(${scrollScale < 0.5 ? '0' : '-50%'}, ${scrollScale < 0.5 ? '0' : '-50%'}) scale(${scrollScale})`,
+          transform: `scale(${scrollScale})`,
         }}
         onClick={() => setProfileToggle(!profileToggle)}
       >
@@ -106,6 +85,25 @@ const Hero: React.FC = () => {
               <div className="w-1 h-1 bg-white rounded-full blur-[1px]" style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }} />
               <div className="w-1 h-1 bg-white rounded-full blur-[1px]" style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }} />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="z-10 animate-fade-in-up">
+        <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-4 leading-tight">
+          SUBHAM<br />SANTRA
+        </h1>
+        
+        <div className="h-8 overflow-hidden mono text-[#00eeff] text-xl tracking-widest uppercase">
+          <div 
+            className="transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateY(-${roleIndex * 32}px)` }}
+          >
+            {ROLES.map((role) => (
+              <div key={role} className="h-8 flex items-center justify-center">
+                {role}
+              </div>
+            ))}
           </div>
         </div>
       </div>

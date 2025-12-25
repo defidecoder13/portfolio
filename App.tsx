@@ -11,6 +11,7 @@ import CustomCursor from './components/CustomCursor.tsx';
 import CommandPalette from './components/CommandPalette.tsx';
 import Background from './components/Background.tsx';
 import SoundEngine from './components/SoundEngine.tsx';
+import SubtleParticles from './components/SubtleParticles.tsx';
 import { ThemeMode } from './types.ts';
 
 const App: React.FC = () => {
@@ -107,6 +108,7 @@ const App: React.FC = () => {
       />
       
       <Background />
+      <SubtleParticles />
       <CustomCursor />
       <Navbar onToggleAudio={() => setIsMuted(!isMuted)} isMuted={isMuted} />
       
