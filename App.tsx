@@ -10,6 +10,7 @@ import Footer from './components/Footer.tsx';
 import CustomCursor from './components/CustomCursor.tsx';
 import CommandPalette from './components/CommandPalette.tsx';
 import Background from './components/Background.tsx';
+import SoundEngine from './components/SoundEngine.tsx';
 import { ThemeMode } from './types.ts';
 
 const App: React.FC = () => {
@@ -19,6 +20,8 @@ const App: React.FC = () => {
   const [typedChars, setTypedChars] = useState('');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [interactionTrigger, setInteractionTrigger] = useState(false);
 
   // Handle key listeners for hidden features
   useEffect(() => {
@@ -26,9 +29,11 @@ const App: React.FC = () => {
     
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
-        spaceTimer = setTimeout(() => {
-          setIsInverted(true);
-        }, 1500);
+        if (!spaceTimer) {
+          spaceTimer = setTimeout(() => {
+            setIsInverted(true);
+          }, 800); // Reduced delay for better sound sync
+        }
       }
 
       const nextTyped = (typedChars + e.key.toLowerCase()).slice(-4);
@@ -41,6 +46,7 @@ const App: React.FC = () => {
     const handleKeyUp = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
         clearTimeout(spaceTimer);
+        spaceTimer = null;
         setIsInverted(false);
       }
     };
@@ -52,6 +58,18 @@ const App: React.FC = () => {
       window.removeEventListener('keyup', handleKeyUp);
     };
   }, [typedChars]);
+
+  // Global Interaction Sound Trigger
+  useEffect(() => {
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, .interactive')) {
+        setInteractionTrigger(prev => !prev);
+      }
+    };
+    window.addEventListener('mouseover', handleMouseOver);
+    return () => window.removeEventListener('mouseover', handleMouseOver);
+  }, []);
 
   // Scroll Progress
   useEffect(() => {
@@ -82,9 +100,15 @@ const App: React.FC = () => {
         Skip to content
       </a>
 
+      <SoundEngine 
+        isMuted={isMuted} 
+        isInverted={isInverted} 
+        activeInteraction={interactionTrigger} 
+      />
+      
       <Background />
       <CustomCursor />
-      <Navbar />
+      <Navbar onToggleAudio={() => setIsMuted(!isMuted)} isMuted={isMuted} />
       
       <div className="fixed right-0 top-0 h-full w-[2px] z-50 overflow-hidden pointer-events-none">
         <div 
