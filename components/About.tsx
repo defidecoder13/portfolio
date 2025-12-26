@@ -8,8 +8,7 @@ const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
   const content = {
-    professional: "I am a meticulous MCA graduate specializing in high-performance web architectures. My core competency lies in bridging the gap between sophisticated backend logic and fluid user experiences. I prioritize clean code, scalability, and robust security in every deployment.",
-    casual: "Hey! I'm an MCA grad who loves turning caffeine into clean code. I'm obsessed with tiny details, dark mode, and making things go fast on the web. When I'm not debugging, you'll probably find me exploring the latest tech stacks or dreaming about minimalist UI."
+    professional: "Hi i am SUBHAM, i am a Full Stack Web Developer. I have a passion for coding and love to create awesome websites. I am a self-taught developer and I'm always learning new things.",
   };
 
   // Intersection Observer to detect when section is visible
@@ -58,8 +57,8 @@ const About: React.FC = () => {
       className="py-32 relative group" 
       onDoubleClick={() => setTone(prev => prev === 'professional' ? 'casual' : 'professional')}
     >
-      <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-50">
-        // about
+      <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-70">
+        // ABOUT
       </div>
       
       <div className="max-w-3xl">
@@ -70,7 +69,7 @@ const About: React.FC = () => {
       </div>
 
       <div className="mt-8 text-[10px] mono uppercase tracking-widest text-[#00eeff] opacity-0 group-hover:opacity-100 transition-opacity">
-        Double click to toggle {tone === 'professional' ? 'casual' : 'professional'} tone
+         
       </div>
     </section>
   );

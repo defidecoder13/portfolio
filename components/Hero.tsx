@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
         onClick={() => setProfileToggle(!profileToggle)}
       >
         <div 
-          className="relative w-48 h-48 rounded-full border border-[#00eeff]/20 overflow-hidden shadow-[0_0_50px_rgba(0,238,255,0.1)] group transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,238,255,0.25)] animate-pulse"
+          className="relative w-48 h-48 rounded-full border border-[#00eeff]/20 overflow-hidden shadow-[0_0_50px_rgba(0,238,255,0.1)] group transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,238,255,0.25)] "
           style={{ 
             animationDuration: '4s',
           }}

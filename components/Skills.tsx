@@ -21,8 +21,8 @@ const Skills: React.FC = () => {
 
   return (
     <section id="skills" className="py-32 relative">
-      <div className="mono text-[#b0b0b0] mb-12 text-sm tracking-widest opacity-50">
-        &gt; skills
+      <div className="mono text-[#b0b0b0] mb-12 text-sm tracking-widest opacity-70">
+        &gt; SKILLS
       </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 md:gap-12">

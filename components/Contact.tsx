@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, X } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -72,8 +72,8 @@ const Contact: React.FC = () => {
       />
 
       <div className="relative z-10 text-center">
-        <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-50">
-          @ connect
+        <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-70">
+          @ CONNECT
         </div>
         
         <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">
@@ -82,9 +82,10 @@ const Contact: React.FC = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 mono text-sm tracking-widest">
           {[
-            { label: 'EMAIL', href: 'mailto:subhamsantra@example.com', icon: <Mail size={16} /> },
-            { label: 'LINKEDIN', href: 'https://linkedin.com/in/subhamsantra', icon: <Linkedin size={16} /> },
-            { label: 'GITHUB', href: 'https://github.com/subhamsantra', icon: <Github size={16} /> }
+            { label: 'MAIL', href: 'subhamsantra001@gmail.com', icon: <Mail size={16} /> },
+            { label: 'LINKEDIN', href: 'https://www.linkedin.com/in/subham-santra-757352376/', icon: <Linkedin size={16} /> },
+            { label: 'GITHUB', href: 'https://github.com/defidecoder13', icon: <Github size={16} /> },
+            { label: 'X', href: 'https://x.com/DefidecoderS', icon: <X size={16} /> }
           ].map((link) => (
             <a
               key={link.label}

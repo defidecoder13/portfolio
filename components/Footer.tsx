@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
             onClick={handleMinimalismClick}
             className={`transition-colors duration-500 hover:text-[#00eeff] ${devMode ? 'text-[#00eeff] glow-text' : ''}`}
           >
-            minimalism
+            Passion
           </button>
         </span>
       </div>

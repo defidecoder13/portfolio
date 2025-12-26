@@ -9,8 +9,8 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-32 border-t border-white/5">
-      <div className="mono text-[#b0b0b0] mb-16 text-sm tracking-widest opacity-50">
-        ~ projects
+      <div className="mono text-[#b0b0b0] mb-16 text-sm tracking-widest opacity-70">
+        PROJECT
       </div>
 
       <div className="grid gap-20">
