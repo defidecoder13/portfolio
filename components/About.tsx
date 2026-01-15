@@ -54,10 +54,10 @@ const About: React.FC = () => {
     <section 
       ref={sectionRef}
       id="about" 
-      className="py-32 relative group" 
+      className="py-16 relative group" 
       onDoubleClick={() => setTone(prev => prev === 'professional' ? 'casual' : 'professional')}
     >
-      <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-70">
+      <div className="mono text-[#b0b0b0] mb-4 text-sm tracking-widest opacity-70">
         // ABOUT
       </div>
       

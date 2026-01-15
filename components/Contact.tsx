@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import { Mail, Linkedin, Github, X } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -62,7 +62,7 @@ const Contact: React.FC = () => {
   return (
     <section 
       id="contact" 
-      className="py-64 relative overflow-hidden"
+      className="py-16 relative overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -72,11 +72,11 @@ const Contact: React.FC = () => {
       />
 
       <div className="relative z-10 text-center">
-        <div className="mono text-[#b0b0b0] mb-8 text-sm tracking-widest opacity-70">
+        <div className="mono text-[#b0b0b0] mb-4 text-sm tracking-widest opacity-70">
           @ CONNECT
         </div>
         
-        <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">
+        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter">
           Let's build something.
         </h2>
 
@@ -104,4 +104,6 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+const MemoizedContact = React.memo(Contact);
+
+export default MemoizedContact;

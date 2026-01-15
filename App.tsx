@@ -1,17 +1,19 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
 import About from './components/About.tsx';
-import Skills from './components/Skills.tsx';
-import Projects from './components/Projects.tsx';
-import Contact from './components/Contact.tsx';
-import Footer from './components/Footer.tsx';
 import CustomCursor from './components/CustomCursor.tsx';
-import CommandPalette from './components/CommandPalette.tsx';
-import Background from './components/Background.tsx';
-import SoundEngine from './components/SoundEngine.tsx';
-import SubtleParticles from './components/SubtleParticles.tsx';
+
+// Lazy load non-critical components for performance
+const Skills = lazy(() => import('./components/Skills.tsx'));
+const Projects = lazy(() => import('./components/Projects.tsx'));
+const Contact = lazy(() => import('./components/Contact.tsx'));
+const Footer = lazy(() => import('./components/Footer.tsx'));
+const CommandPalette = lazy(() => import('./components/CommandPalette.tsx'));
+const EnhancedBackground = lazy(() => import('./components/EnhancedBackground.tsx'));
+const SoundEngine = lazy(() => import('./components/SoundEngine.tsx'));
+const EnhancedParticles = lazy(() => import('./components/EnhancedParticles.tsx'));
 import { ThemeMode } from './types.ts';
 
 const App: React.FC = () => {
@@ -101,15 +103,19 @@ const App: React.FC = () => {
         Skip to content
       </a>
 
-      <SoundEngine 
-        isMuted={isMuted} 
-        isInverted={isInverted} 
-        activeInteraction={interactionTrigger} 
-      />
+      <Suspense fallback={<div className="hidden" />}>  
+        <SoundEngine 
+          isMuted={isMuted} 
+          isInverted={isInverted} 
+          activeInteraction={interactionTrigger} 
+        />
+        
+        <EnhancedBackground />
+        <EnhancedParticles />
+      </Suspense>
       
-      <Background />
-      <SubtleParticles />
       <CustomCursor />
+      
       <Navbar onToggleAudio={() => setIsMuted(!isMuted)} isMuted={isMuted} />
       
       <div className="fixed right-0 top-0 h-full w-[2px] z-50 overflow-hidden pointer-events-none">
@@ -122,15 +128,25 @@ const App: React.FC = () => {
       <main className="max-w-6xl mx-auto px-6 md:px-12 selection-glow relative z-10">
         <Hero />
         <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <Suspense fallback={<div className="h-32 flex items-center justify-center text-[#00eeff]">Loading skills...</div>}>
+          <Skills />
+        </Suspense>
+        <Suspense fallback={<div className="h-32 flex items-center justify-center text-[#00eeff]">Loading projects...</div>}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<div className="h-32 flex items-center justify-center text-[#00eeff]">Loading contact...</div>}>
+          <Contact />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={<div className="hidden" />}>
+        <Footer />
+      </Suspense>
 
       {showCommandPalette && (
-        <CommandPalette onClose={() => setShowCommandPalette(false)} />
+        <Suspense fallback={<div className="hidden" />}>
+          <CommandPalette onClose={() => setShowCommandPalette(false)} />
+        </Suspense>
       )}
     </div>
   );

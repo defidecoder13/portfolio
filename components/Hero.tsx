@@ -52,14 +52,14 @@ const Hero: React.FC = () => {
   }, []);
 
   const pfpUrl = profileToggle 
-    ? 'public/github dp 2.jpg'
-    : 'public/github dp 2.jpg';
+    ? '/github dp 2.jpg'
+    : '/github dp 2.jpg';
 
   return (
-    <section id="hero" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-12 pb-16">
       {/* Centered Profile Picture */}
       <div 
-        className="profile-pic-container mb-8 transition-all duration-700 ease-out z-20 pointer-events-auto cursor-pointer"
+        className="profile-pic-container mb-8 transition-all duration-700 ease-out z-20 pointer-events-auto cursor-pointer animate-float"
         style={{
           transform: `scale(${scrollScale})`,
         }}
@@ -78,6 +78,8 @@ const Hero: React.FC = () => {
             style={{ 
               transform: `translate(${mousePos.x}px, ${mousePos.y}px) scale(1.1)` 
             }}
+            loading="eager"
+            fetchPriority="high"
           />
           {/* Subtle Eye Follow Effect */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-30">
@@ -89,23 +91,32 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="z-10 animate-fade-in-up">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-4 leading-tight">
-          SUBHAM<br />SANTRA
+      <div className="z-10 animate-fade-in-up max-w-4xl px-4">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight text-center">
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00eeff] via-[#64feda] to-[#00eeff] animate-gradient">
+            SUBHAM
+          </span>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#64feda] via-[#00eeff] to-[#64feda] mt-2 animate-gradient">
+            SANTRA
+          </span>
         </h1>
         
-        <div className="h-8 overflow-hidden mono text-[#00eeff] text-xl tracking-widest uppercase">
+        <div className="h-10 overflow-hidden mono text-2xl font-medium tracking-wide">
           <div 
             className="transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateY(-${roleIndex * 32}px)` }}
+            style={{ transform: `translateY(-${roleIndex * 40}px)` }}
           >
             {ROLES.map((role) => (
-              <div key={role} className="h-8 flex items-center justify-center">
+              <div key={role} className="h-10 flex items-center justify-center text-[#00eeff] font-semibold">
                 {role}
               </div>
             ))}
           </div>
         </div>
+        
+        <p className="mt-8 text-lg md:text-xl text-[#e0e0e0] max-w-2xl mx-auto font-light leading-relaxed">
+          Crafting immersive digital experiences with cutting-edge technologies and innovative design.
+        </p>
       </div>
 
       <div className="absolute bottom-12 animate-bounce opacity-40">
@@ -114,11 +125,33 @@ const Hero: React.FC = () => {
 
       <style>{`
         @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
         .animate-fade-in-up {
-          animation: fade-in-up 1s ease-out forwards;
+          animation: fade-in-up 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient-shift 6s ease infinite;
         }
       `}</style>
     </section>
